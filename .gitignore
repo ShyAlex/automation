@@ -1,4 +1,6 @@
 **.*~
+**.bak
+Automation/**.cache
 Automation/**.suo
 Automation/**/bin
 Automation/**/obj
