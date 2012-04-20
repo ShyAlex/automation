@@ -8,6 +8,27 @@ namespace ShyAlex.Windows.Automation
 {
     public static class IControlDriverExtensions
     {
+        private static readonly Dictionary<DriverType, Func<AutomationElement, IControlDriver>> driverCtors =
+            new Dictionary<DriverType, Func<AutomationElement, IControlDriver>>
+            {
+                { DriverType.Button, e => new ButtonDriver(e) },
+                { DriverType.Desktop, e => DesktopDriver.Instance },
+                { DriverType.Grid, e => new GridDriver(e) },
+                { DriverType.Text, e => new TextDriver(e) },
+                { DriverType.Value, e => new ValueDriver(e) },
+                { DriverType.Window, e => new WindowDriver(e) }
+            };
+
+        public static IControlDriver GetChildDriverByName(this IControlDriver parent, String name, DriverType driverType)
+        {
+            return parent.GetChildDriverByName<IControlDriver>(name, driverCtors[driverType]);
+        }
+
+        public static IControlDriver GetChildDriverById(this IControlDriver parent, String automationId, DriverType driverType)
+        {
+            return parent.GetChildDriverById<IControlDriver>(automationId, driverCtors[driverType]);
+        }
+
         public static T GetChildDriverByName<T>(this IControlDriver parent, String name, Func<AutomationElement, T> toDriver) where T : IControlDriver
         {
             if (toDriver == null)
