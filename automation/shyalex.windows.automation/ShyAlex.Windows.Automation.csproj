@@ -38,9 +38,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonDriver.cs" />
+    <Compile Include="DesktopDriver.cs" />
+    <Compile Include="GridDriver.cs" />
+    <Compile Include="IControlDriver.cs" />
+    <Compile Include="IControlDriverExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextDriver.cs" />
+    <Compile Include="UiOperation.cs" />
+    <Compile Include="ValueDriver.cs" />
+    <Compile Include="WindowDriver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
